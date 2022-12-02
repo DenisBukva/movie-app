@@ -27,6 +27,9 @@ module.exports = {
     'jsx-a11y/heading-has-content': 0,
     'no-unused-vars': 0,
     'react/prop-types': 0,
+    'import/prefer-default-export': 0,
+    'no-param-reassign': 0,
+    'import/no-cycle': 0,
 
   },
 };
