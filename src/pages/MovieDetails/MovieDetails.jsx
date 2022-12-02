@@ -7,7 +7,7 @@ import {
   getSelectedMovieOrShow,
   removeSelectedMovieOrShow,
 } from '../../features/movies/movieSlice';
-import { DetailsCard } from '..';
+import { DetailsCard, Loader } from '../../components';
 import './MovieDetails.scss';
 
 const MovieDetails = () => {
@@ -26,7 +26,7 @@ const MovieDetails = () => {
   return (
     <div className="movie-section">
       {Object.keys(data).length === 0 ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <>
           <DetailsCard details={data} />

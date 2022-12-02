@@ -1,13 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import {
   Footer,
   PageNotFound,
-  HomeScreen,
-  MovieDetails,
   Header,
-  MovieListing,
 } from './components';
+import { HomeScreen, MovieListing, MovieDetails } from './pages';
 import './App.scss';
 
 const MainRouter = () => {
@@ -15,12 +13,12 @@ const MainRouter = () => {
     <div className="app">
       <Header></Header>
       <div className="container">
-        <Switch>
-          <Route path="/" exact component={HomeScreen} />
-          <Route path="/movies" component={MovieListing} />
-          <Route path="/movie/:imdbID" component={MovieDetails} />
-          <Route component={PageNotFound} />
-        </Switch>
+        <Routes>
+          <Route path="/" index element={<HomeScreen />} />
+          <Route path="/movies" element={<MovieListing />} />
+          <Route path="/movie/:imdbID" element={<MovieDetails />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
       </div>
       <Footer />
     </div>

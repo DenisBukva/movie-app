@@ -7,11 +7,6 @@ export const fetchAsyncMovies = createAsyncThunk('movies/fetchAsyncMovies', asyn
   return response.data;
 });
 
-export const fetchAsyncShows = createAsyncThunk('movies/fetchAsyncShows', async (search) => {
-  const response = await movieApi.get(`?apiKey=${APIKey}&s=${search}&type=series`);
-  return response.data;
-});
-
 export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   'movies/fetchAsyncMovieOrShowDetail',
   async (id) => {
@@ -22,7 +17,6 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
 
 const initialState = {
   movies: {},
-  shows: {},
   selectMovieOrShow: {},
 };
 
@@ -36,28 +30,26 @@ const movieSlice = createSlice({
   },
   extraReducers: {
     [fetchAsyncMovies.pending]: () => {
-      console.log('Pending');
+      console.log('Pending Movies');
     },
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-      console.log('Fatched Success');
-      return { ...state, movies: payload };
+      console.log('Fatched Movies Success');
+      state.movies = payload;
     },
     [fetchAsyncMovies.rejected]: () => {
-      console.log('Rejected');
+      console.log('Rejected Movies');
     },
-    [fetchAsyncShows.fulfilled]: (state, { payload }) => {
-      console.log('Fatched Success');
-      return { ...state, shows: payload };
+    [fetchAsyncMovieOrShowDetail.pending]: () => {
+      console.log('Fetched Movie or Show Detail Successfully!');
     },
     [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-      console.log('Fetched Successfully!');
-      return { ...state, selectMovieOrShow: payload };
+      console.log('Fetched Movie or Show Detail Successfully!');
+      state.selectMovieOrShow = payload;
     },
   },
 });
 
 export const { removeSelectedMovieOrShow } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
-export const getAllShows = (state) => state.movies.shows;
 export const getSelectedMovieOrShow = (state) => state.movies.selectMovieOrShow;
 export default movieSlice.reducer;

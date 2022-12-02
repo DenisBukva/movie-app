@@ -3,10 +3,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  fetchAsyncMovies,
-  fetchAsyncShows,
-} from '../../features/movies/movieSlice';
+import { fetchAsyncMovies } from '../../features/movies/movieSlice';
+import { fetchAsyncShows } from '../../features/shows/showSlice';
 import './Header.scss';
 
 const Header = () => {
